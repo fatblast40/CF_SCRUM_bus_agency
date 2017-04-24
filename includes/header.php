@@ -3,7 +3,7 @@
 <header class="row shadow header_margin">
 		<div class="col-xs-12 col-sm-6">
 			<span><img id="logo" src="pictures/logo.png" alt="logo"></span>
-			<span><h1 class="brandfont">Code Library</h1></span>
+			<!-- <span><h1 class="brandfont">Code Library</h1></span> -->
 		</div>
 		<div class="col-xs-12 col-sm-6">
 			<div class="padding">

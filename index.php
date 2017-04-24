@@ -17,18 +17,27 @@
  if( isset($_POST['btn-login']) ) {
  
   // prevent sql injections/ clear user invalid inputs
-  $username = trim($_POST['username']);
-  $username = strip_tags($username);
-  $username = htmlspecialchars($username);
+  // $username = trim($_POST['username']);
+  // $username = strip_tags($username);
+  // $username = htmlspecialchars($username);
+  
+  $email = trim($_POST['email']);
+  $email = strip_tags($email);
+  $email = htmlspecialchars($email);
  
   $password = trim($_POST['password']);
   $password = strip_tags($password);
   $password = htmlspecialchars($password);
   // prevent sql injections / clear user invalid inputs
  
-  if(empty($username)){
+  // if(empty($username)){
+  //  $error = 1;
+  //  $nameError = "Please enter your username address.";
+  // } 
+   
+  if(empty($email)){
    $error = 1;
-   $nameError = "Please enter your username address.";
+   $emailError = "Please enter your email address.";
   } 
  
   if(empty($password)){
@@ -41,12 +50,12 @@
    
    $password = hash('sha256', $password); // password hashing using SHA256
   // user
-   $res_user=mysql_query("SELECT id, username, first_name, password FROM users WHERE username='$username'");
+   $res_user=mysql_query("SELECT id, email, family_name, password FROM user WHERE email='$email'");
    $row_user=mysql_fetch_array($res_user);
    $count_user = mysql_num_rows($res_user); // if uname/pass correct it returns must be 1 row
    // echo $count_user;
    // admin
-   $res_admin=mysql_query("SELECT users.id, username, first_name, password FROM users JOIN admins ON users.id = admins.FK_users WHERE username='$username'");
+   $res_admin=mysql_query("SELECT user.id, email, family_name, password FROM user JOIN admin ON user.id = admin.user_id WHERE email='$email'");
    $row_admin=mysql_fetch_array($res_admin);
    $count_admin = mysql_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
    // echo $count_admin;
@@ -94,14 +103,14 @@
   <header class="row shadow">
     <div class="col-xs-6">
       <span><img id="logo" src="pictures/logo.png" alt="logo"></span>
-      <span><h1 class="brandfont">Code Library</h1></span>
+      <!-- <span><h1 class="brandfont">Code Library</h1></span> -->
     </div>
   </header>
     <div class="row">
       <div class="col-xs-12">
         <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF']); ?>" autocomplete="off">
 
-          <h2>Sign In.</h2>
+          <h2 class="color_bc1">Sign In</h2>
           <hr />
                  
       <?php
@@ -112,20 +121,28 @@ require_once('includes/alert_box.php');
                
                  
         <!-- USERNAME -->
-          <h4>USERNAME:</h4>
+        <!--   <h4 class="color_bc1">USERNAME:</h4>
           <input type="text" name="username" id="username" class="form-control" placeholder="Enter Username" maxlength="50" value="<?php echo $name ?>" />
           <span class="text-danger"><?php echo $nameError; ?></span>
       </div>
+      <div class="col-xs-12 col-md-6"> -->
+
+       <!-- EMAIL -->
+          <h4 class="color_bc1">E-MAIL:</h4>
+          <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" value="<?php echo $email ?>" />
+          <span class="text-danger"><?php echo $emailError; ?></span>
+      </div>
       <div class="col-xs-12 col-md-6">
+
         <!-- PASSWORD -->
-          <h4>PASSWORD:</h4>
+          <h4 class="color_bc1">PASSWORD:</h4>
           <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
           <span class="text-danger"><?php echo $passError; ?></span>
       </div>
       <div class="col-xs-12">
         <!-- SUBMIT -->
           <hr />
-          <button type="submit" id="btn-login" class="btn btn-primary" name="btn-login">Log-In</button>
+          <button type="submit" id="btn-login" class="btn btn-primary background_bc1" name="btn-login">Log-In</button>
           <hr />
           <a href="register.php">Sign Up Here...</a>
       </div>

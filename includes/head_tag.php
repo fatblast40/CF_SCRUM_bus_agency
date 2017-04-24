@@ -24,7 +24,11 @@
 		  height: 100%;
 		}
 
-
+		.avatar {
+        width: 120px;
+        height: 120px;
+        margin: 4px;
+      	}	
 		#wrap {
 		  min-height: 100%;
 		}

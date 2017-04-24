@@ -15,19 +15,19 @@ CREATE TABLE avatar(
 );
 
 INSERT INTO 
-    device 
+    avatar 
         (location)
     VALUES 
-        ('picture/avatar1.jpg'),
-        ('picture/avatar2.jpg'),
-        ('picture/avatar3.jpg'),
-        ('picture/avatar4.jpg'),
-        ('picture/avatar5.jpg'),
-        ('picture/avatar6.jpg'),
-        ('picture/avatar7.jpg'),
-        ('picture/avatar8.jpg'),
-        ('picture/avatar9.jpg'),
-        ('picture/avatar10.jpg');
+        ('pictures/avatar1.jpg'),
+        ('pictures/avatar2.jpg'),
+        ('pictures/avatar3.jpg'),
+        ('pictures/avatar4.jpg'),
+        ('pictures/avatar5.jpg'),
+        ('pictures/avatar6.jpg'),
+        ('pictures/avatar7.jpg'),
+        ('pictures/avatar8.jpg'),
+        ('pictures/avatar9.jpg'),
+        ('pictures/avatar10.jpg');
 
 CREATE TABLE customer(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,

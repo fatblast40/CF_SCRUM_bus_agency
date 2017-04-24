@@ -38,7 +38,7 @@ INSERT INTO
         ('pictures/avatar9.jpg'),
         ('pictures/avatar10.jpg');
 
-CREATE TABLE customer(
+CREATE TABLE user(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     title_id int(15) NOT NULL,
     avatar_id int(15) NOT NULL,
@@ -53,12 +53,24 @@ CREATE TABLE customer(
     INDEX (id, title_id, avatar_id)
 );
 
+INSERT INTO 
+    user 
+        (title_id, avatar_id, first_name, last_name, email, tel, birth_year, password)
+    VALUES 
+        (1, 1, 'admin', 'admin', 'admin@codebus.com', '+43 666 123 1234', 1972, '1234');
+
 CREATE TABLE admin(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    customer_id int(15) NOT NULL, 
-    FOREIGN KEY (customer_id) REFERENCES customer (id),
-    INDEX (id, customer_id)
+    user_id int(15) NOT NULL, 
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    INDEX (id, user_id)
 );
+
+INSERT INTO 
+    admin 
+        (user_id)
+    VALUES 
+        (1);
 
 CREATE TABLE device(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -76,14 +88,14 @@ INSERT INTO
 
 CREATE TABLE session(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    customer_id int(15) NOT NULL, 
+    user_id int(15) NOT NULL, 
     reg_date date NOT NULL,
     country varchar(255) NOT NULL, 
     user_agent varchar(255) NOT NULL, 
     device_id int(15) NOT NULL,
-    FOREIGN KEY (customer_id) REFERENCES customer (id),
+    FOREIGN KEY (user_id) REFERENCES user (id),
     FOREIGN KEY (device_id) REFERENCES device (id),
-    INDEX (id, customer_id, device_id)
+    INDEX (id, user_id, device_id)
 );
 
 CREATE TABLE model(

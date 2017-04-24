@@ -290,3 +290,29 @@ INSERT INTO
         ('Paris', 3, 10, 114.00),
         ('Venice', 4, 10, 68.00),
         ('Salzburg', 5, 4, 46.00);
+
+CREATE TABLE schedule (
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    route_id int(15) NOT NULL,
+    departure datetime NOT NULL,
+    eta datetime NOT NULL,
+    FOREIGN KEY (route_id) REFERENCES route (id),
+    INDEX (id, route_id)
+);
+
+CREATE TABLE payment(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id int(15) NOT NULL, 
+    iban varchar(255) NOT NULL, 
+    FOREIGN KEY (user_id) REFERENCES user (id),
+    INDEX (id, user_id)
+);
+
+CREATE TABLE booking(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    stamp datetime NOT NULL,
+    payment_id int(15) NOT NULL, 
+    FOREIGN KEY (payment_id) REFERENCES payment (id),
+    INDEX (id, payment_id)
+);
+

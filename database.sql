@@ -62,7 +62,7 @@ CREATE TABLE session(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customer_id int(15) NOT NULL, 
     reg_date date NOT NULL,
-    country
+    country varchar(255) NOT NULL, 
     user_agent varchar(255) NOT NULL, 
     device_id int(15) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer (id),
@@ -70,3 +70,53 @@ CREATE TABLE session(
     INDEX (id, device_id)
 );
 
+CREATE TABLE model(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    seats int(5) NOT NULL, 
+    INDEX (id)
+);
+
+INSERT INTO 
+    model 
+        (seats)
+    VALUES 
+        (56),
+        (42),
+        (12);
+
+CREATE TABLE bus(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    model_id int(15) NOT NULL, 
+    FOREIGN KEY (model_id) REFERENCES model (id),
+    INDEX (id)
+);
+
+INSERT INTO 
+    bus 
+        (model_id)
+    VALUES 
+        (1),
+        (1),
+        (1),
+        (2),
+        (3);
+
+CREATE TABLE route (
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    destination int(15) NOT NULL, 
+    bus_id int(15) NOT NULL,
+    min_seats int(15) NOT NULL,
+    price decimal(10,2),
+    FOREIGN KEY (bus_id) REFERENCES bus (id),
+    INDEX (id, bus_id)
+);
+
+INSERT INTO 
+    route 
+        (destination, bus_id, min_seats, price)
+    VALUES 
+        ('Bratislava', 1, 10, 12.00),
+        ('Frankfurt', 2, 10, 87.00),
+        ('Paris', 3, 10, 114.00),
+        ('Venice', 4, 10, 68.00),
+        ('Salzburg', 5, 4, 46.00);

@@ -62,7 +62,8 @@ CREATE TABLE session(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     customer_id int(15) NOT NULL, 
     reg_date date NOT NULL,
-    data varchar(255) NOT NULL, 
+    country
+    user_agent varchar(255) NOT NULL, 
     device_id int(15) NOT NULL,
     FOREIGN KEY (customer_id) REFERENCES customer (id),
     FOREIGN KEY (device_id) REFERENCES device (id),

@@ -1,0 +1,119 @@
+body * {
+    /*border: 1px solid;*/
+}
+#logo {
+	width: 100px;
+	float: left;
+}
+
+header h1 {
+	position: relative;
+}
+
+
+
+
+#a:link {
+    color: darkblue;
+    text-decoration: none;
+}
+#a:visited {
+    color: darkblue;
+    text-decoration: none;
+}
+#a:hover {
+    color: darkblue;
+    text-decoration: none;
+}
+#a:active {
+    color: darkblue;
+    text-decoration: none;
+}
+
+.margin-top {
+    margin-top: 2%;
+}
+
+.reduce-bottom-margin {
+	margin-bottom: -4%;
+	/*border: 1px solid;*/
+}
+
+
+
+.show_avatar{
+	height: 50px;
+	width: 50px;
+	border: 0.5px solid lightgrey;
+}
+
+/* CSS used here will be applied after bootstrap.css */
+.nav { 
+	margin-bottom: 0; 
+}
+.nav > li.dropdown.open { 
+	position: static; 
+}
+.nav > li.dropdown.open .dropdown-menu {
+	display:table; 
+	width: 100%; 
+	text-align: center; 
+	left:0; 
+	right:0; 
+}
+.dropdown-menu>li { 
+	display: table-cell; 
+}
+
+
+
+
+.heading_brandfont {
+    font-family: 'Satisfy', cursive;
+}
+
+.brandfont {
+font-family: 'Lobster Two',
+cursive;
+}
+
+.shadow {
+    /*-webkit-box-shadow: 9px 9px 5px -7px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 9px 9px 5px -7px rgba(0, 0, 0, 0.75);
+    box-shadow: 9px 9px 5px -7px rgba(0, 0, 0, 0.75);*/
+    -webkit-box-shadow: 3px 6px 22px -9px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 3px 6px 22px -9px rgba(0, 0, 0, 0.75);
+    box-shadow: 3px 6px 22px -9px rgba(0, 0, 0, 0.75);
+}
+
+.bigger {
+    font-size: 1.3em;
+}
+
+.shadow_new {
+    -webkit-box-shadow: inset 0px 6px 12px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: inset 0px 6px 12px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: inset 0px 6px 12px -6px rgba(0, 0, 0, 0.75);
+    padding-bottom: 1%;
+}
+
+.right_shadow {
+    -webkit-box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+    box-shadow: 6px 0px 11px -6px rgba(0, 0, 0, 0.75);
+}
+
+.white_opacity {
+    background-color: rgba(255, 255, 255, 0.5);
+    color:black;
+}
+.white {
+    background-color: rgba(255, 255, 255, 1);
+    color:black;
+}
+.padding {
+        padding: 5px;
+}
+
+
+

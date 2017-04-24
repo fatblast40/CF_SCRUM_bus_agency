@@ -13,6 +13,7 @@ CREATE TABLE customer(
     title_id int(15) NOT NULL,
     first_name varchar(255) NOT NULL, 
     last_name varchar(255) NOT NULL,
+    birth_year year NOT NULL,
     password varchar(255) NOT NULL, 
     FOREIGN KEY (title_id) REFERENCES title (id),
     INDEX (id, title_id)

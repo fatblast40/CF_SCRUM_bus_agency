@@ -27,6 +27,7 @@
  $telephoneError ="";
  $yearError ="";
  $avatarError ="";
+ $countryError ="";
  $errTyp="";
  $errMSG="";
 
@@ -61,9 +62,17 @@
   $year = strip_tags($year);
   $year = htmlspecialchars($year);
 
+  $country = trim($_POST['country']);
+  $country = strip_tags($country);
+  $country = htmlspecialchars($country);
+
 
   $title = $_POST['title'];
+
   $avatar = $_POST['avatar'];
+    // if (empty($avatar)){
+    //   $avatar = 1;
+    // }
 
   // basic username validation
   // if (empty($username)) {
@@ -155,6 +164,12 @@
    $avatarError = "Please choose an avatar.";
   }
         // echo " avatar: $error<br>";
+        // 
+    // country of residence validation
+  if (empty($country)){
+   $error = 1;
+   $countryError = "Please enter your country of residence.";
+  }
 
   // if there's no error, continue to signup
   if( $error == 0 ) {
@@ -263,7 +278,7 @@ require_once('includes/head_tag.php');
 </div>
           <!-- <span class="text-danger"><?php echo $titlenameError; ?></span>   -->
           <!-- Telephone -->
-          <h4 class="color_bc1">Telephone:</h4>
+          <h4 id="telephone_h4" class="color_bc1">Telephone:</h4>
           <input type="text" id="telephone" name="telephone" class="form-control" placeholder="Enter telephone" />
           <span class="text-danger"><?php echo $telephoneError; ?></span> 
           <!-- Year of Birth -->
@@ -271,9 +286,9 @@ require_once('includes/head_tag.php');
           <input type="number" id="year" name="year" class="form-control" placeholder="Enter your year of birth" value="<?php echo $year ?>" />
           <span class="text-danger"><?php echo $yearError; ?></span>
           <!-- Country -->
-          <!-- <h4 class="color_bc1">Current country of residence:</h4>
+          <h4 class="color_bc1">Current country of residence:</h4>
           <input type="text" id="country" name="country" class="form-control" placeholder="Enter your current country" />
-          <span class="text-danger"><?php echo $countryError; ?></span> -->
+          <span class="text-danger"><?php echo $countryError; ?></span>
 
           
       </div>
@@ -291,7 +306,7 @@ require_once('includes/head_tag.php');
             $avatar_id = $avatarRow['id'];
 
             echo    '<label class="radio-inline">
-                      <input type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar">
+                      <input type="radio" value="'.$avatar_id.'" name="avatar"><img class="img-circle avatar" src="'.$avatar.'" alt="avatar" >
                     </label>';
           }
         ?>
@@ -315,8 +330,41 @@ require_once('includes/head_tag.php');
   <?php
 require_once('includes/footer.php');
   ?>
-<script type="text/javascript" src="js/register.js"></script>
+<!-- <script type="text/javascript" src="js/register.js"></script> -->
+<script>
+  //Storing data:
+$("#btn-signup").on("click", save_json);
 
+function save_json() {
+    signup = {
+        email: document.getElementById("email").value,
+        first_name: document.getElementById("first_name").value,
+        family_name: document.getElementById("family_name").value,
+        telephone: document.getElementById("telephone").value,
+        year: document.getElementById("year").value
+    }
+
+    myJSON = JSON.stringify(signup);
+    localStorage.setItem("signupJSON", myJSON);
+    console.log("new data should be saved in json");
+};
+
+// fill data from json
+fill_data();
+
+function fill_data() {
+    var text;
+    text = localStorage.getItem("signupJSON");
+    signup = JSON.parse(text);
+    // $("#username").val(signup.username);
+    $("#email").val(signup.email);
+    $("#first_name").val(signup.first_name);
+    $("#family_name").val(signup.family_name);
+    $("#telephone").val(signup.telephone);
+    $("#year").val(signup.year);
+    console.log("new data should be received from json");
+};
+</script>
 </body>
 </html>
 <?php ob_end_flush(); ?>

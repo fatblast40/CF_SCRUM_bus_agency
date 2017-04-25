@@ -21,6 +21,7 @@
  if( isset($_POST['btn-login']) ) {
  
   // prevent sql injections/ clear user invalid inputs
+  
   // $username = trim($_POST['username']);
   // $username = strip_tags($username);
   // $username = htmlspecialchars($username);
@@ -54,17 +55,18 @@
    
    $password = hash('sha256', $password); // password hashing using SHA256
   // user
-   $user_query = "SELECT id, email, family_name, password FROM user WHERE email='$email'";
+   $user_query = "SELECT id, email, last_name, password FROM user WHERE email='$email'";
    $res_user = mysqli_query($con, $user_query);
    $row_user = mysqli_fetch_array($res_user);
    $count_user = mysqli_num_rows($res_user); // if uname/pass correct it returns must be 1 row
    // echo $count_user;
    // admin
-   $res_admin=mysqli_query($con, "SELECT user.id, email, family_name, password FROM user JOIN admin ON user.id = admin.user_id WHERE email='$email'");
+   $res_admin=mysqli_query($con, "SELECT user.id, email, last_name, password FROM user JOIN admin ON user.id = admin.user_id WHERE email='$email'");
    $row_admin=mysqli_fetch_array($res_admin);
    $count_admin = mysqli_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
    // echo $count_admin;
-
+   echo $row_user['password'].'<br>';
+   echo $password;
    if( $count_user == 1 && $row_user['password']==$password ) {
     $_SESSION['user'] = $row_user['id'];
     header("Location: home_user.php");

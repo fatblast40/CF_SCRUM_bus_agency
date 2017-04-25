@@ -45,16 +45,19 @@ require_once('includes/head_tag.php');
 		?>
 
 <!-- main -->
-	<section class="row">
+	<div class="row">
 		<div class="col-xs-12">
-		<h3 class="brandfont text-center color_bc1">
-			Add Holidays
-		</h3>
-		<hr class="border_bc1 ">	
+			<section class="row">
+				<div class="col-xs-12">
+					<h3 class="brandfont text-center color_bc1">
+						Add Holidays
+					</h3>
+					<hr class="border_bc1 ">	
+				</div>
+				<!-- add data here -->
+			</section>
+		</div>
 	</div>
-<!-- put content here -->
-
-	</section>
 <!-- end wrapper to put footer on the bottom of the page -->
   </div>
 </div>

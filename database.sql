@@ -13,9 +13,9 @@ INSERT INTO
     title 
         (name)
     VALUES 
-        ('Mr'),
-        ('Ms'),
-        ('Mrs');
+        ('Mr.'),
+        ('Ms.'),
+        ('Mrs.');
 
 CREATE TABLE avatar(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,

@@ -17,6 +17,18 @@
 
 
  $error = 0;
+ $emailError ="";
+ $firstnameError ="";
+ $familynameError ="";
+ $emailError ="";
+ $passError ="";
+ $titlenameError ="";
+
+ $telephoneError ="";
+ $yearError ="";
+ $avatarError ="";
+ $errTyp="";
+ $errMSG="";
 
 
  if ( isset($_POST['btn-signup']) ) {
@@ -79,8 +91,8 @@
   } else {
    // check whether the email exists or not
    $query_email = "SELECT email FROM user WHERE user.email='$email'";
-   $result_email = mysql_query($query_email);
-   $count_email = mysql_num_rows($result_email);
+   $result_email = mysqli_query($con, $query_email);
+   $count_email = mysqli_num_rows($result_email);
    if($count_email!=0){
     $error = 1;
     $emailError = "Provided Email is already in use.";
@@ -149,7 +161,7 @@
    // echo "no error";
     
    $query_user = "INSERT INTO user (first_name, last_name, email, password, title_id, avatar_id, tel, birth_year) VALUES('$first_name','$family_name', '$email', '$password', $title, $avatar, '$telephone', $year)";
-   $res_user = mysql_query($query_user);
+   $res_user = mysqli_query($con, $query_user);
 
    
    if ($res_user) {
@@ -237,10 +249,10 @@ require_once('includes/head_tag.php');
   <select class="form-control" id="title" name="title">
           <?php
              // select all available titles
-            $res_title=mysql_query("SELECT * FROM title");
+            $res_title=mysqli_query($con, "SELECT * FROM title");
             
             
-              while($titleRow=mysql_fetch_array($res_title)){
+              while($titleRow=mysqli_fetch_array($res_title)){
                 $title = $titleRow['name'];
                 $title_id = $titleRow['id'];
                 echo "<option value='".$title_id."'>".$title."</option>";
@@ -249,7 +261,7 @@ require_once('includes/head_tag.php');
 
   </select>
 </div>
-          <span class="text-danger"><?php echo $titlenameError; ?></span>  
+          <!-- <span class="text-danger"><?php echo $titlenameError; ?></span>   -->
           <!-- Telephone -->
           <h4 class="color_bc1">Telephone:</h4>
           <input type="text" id="telephone" name="telephone" class="form-control" placeholder="Enter telephone" />
@@ -272,9 +284,9 @@ require_once('includes/head_tag.php');
 
         <?php
           $query_avatar = "SELECT * FROM avatar";
-          $res_avatar = mysql_query($query_avatar);
+          $res_avatar = mysqli_query($con, $query_avatar);
 
-          while($avatarRow=mysql_fetch_array($res_avatar)){
+          while($avatarRow=mysqli_fetch_array($res_avatar)){
             $avatar = $avatarRow['location'];
             $avatar_id = $avatarRow['id'];
 

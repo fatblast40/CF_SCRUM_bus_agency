@@ -13,6 +13,10 @@
  }
  
  $error = 0;
+ $emailError ="";
+ $passError ="";
+ $errTyp="";
+ $errMSG="";
  
  if( isset($_POST['btn-login']) ) {
  
@@ -50,14 +54,15 @@
    
    $password = hash('sha256', $password); // password hashing using SHA256
   // user
-   $res_user=mysql_query("SELECT id, email, family_name, password FROM user WHERE email='$email'");
-   $row_user=mysql_fetch_array($res_user);
-   $count_user = mysql_num_rows($res_user); // if uname/pass correct it returns must be 1 row
+   $user_query = "SELECT id, email, family_name, password FROM user WHERE email='$email'";
+   $res_user = mysqli_query($con, $user_query);
+   $row_user = mysqli_fetch_array($res_user);
+   $count_user = mysqli_num_rows($res_user); // if uname/pass correct it returns must be 1 row
    // echo $count_user;
    // admin
-   $res_admin=mysql_query("SELECT user.id, email, family_name, password FROM user JOIN admin ON user.id = admin.user_id WHERE email='$email'");
-   $row_admin=mysql_fetch_array($res_admin);
-   $count_admin = mysql_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
+   $res_admin=mysqli_query($con, "SELECT user.id, email, family_name, password FROM user JOIN admin ON user.id = admin.user_id WHERE email='$email'");
+   $row_admin=mysqli_fetch_array($res_admin);
+   $count_admin = mysqli_num_rows($res_admin); // if uname/pass correct it returns must be 1 row
    // echo $count_admin;
 
    if( $count_user == 1 && $row_user['password']==$password ) {
@@ -129,7 +134,7 @@ require_once('includes/alert_box.php');
 
        <!-- EMAIL -->
           <h4 class="color_bc1">E-MAIL:</h4>
-          <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email" value="<?php echo $email ?>" />
+          <input type="email" name="email" id="email" class="form-control" placeholder="Enter Email"/>
           <span class="text-danger"><?php echo $emailError; ?></span>
       </div>
       <div class="col-xs-12 col-md-6">

@@ -24,6 +24,11 @@
 		  height: 100%;
 		}
 
+		#telephone_h4 {
+		    margin-top: -5px;
+		    /*background-color: black;*/
+		}
+
 		.avatar {
         width: 120px;
         height: 120px;

@@ -13,9 +13,9 @@ INSERT INTO
     title 
         (name)
     VALUES 
-        ('Mr'),
-        ('Ms'),
-        ('Mrs');
+        ('Mr.'),
+        ('Ms.'),
+        ('Mrs.');
 
 CREATE TABLE avatar(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -100,17 +100,19 @@ CREATE TABLE session(
 
 CREATE TABLE model(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    seats int(5) NOT NULL, 
+    seats int(5) NOT NULL,
+    rows int(5) NOT NULL, 
+    columns int(5) NOT NULL, 
     INDEX (id)
 );
 
 INSERT INTO 
     model 
-        (seats)
+        (seats, rows, columns)
     VALUES 
-        (56),
-        (42),
-        (12);
+        (56, 14, 4),
+        (42, 14, 3),
+        (12, 4, 3);
 
 CREATE TABLE bus(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -312,9 +314,21 @@ CREATE TABLE booking(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stamp datetime NOT NULL,
     payment_id int(15) NOT NULL, 
+    schedule_id int(15) NOT NULL, 
     FOREIGN KEY (payment_id) REFERENCES payment (id),
-    INDEX (id, payment_id)
+    FOREIGN KEY (schedule_id) REFERENCES schedule (id),
+    INDEX (id, payment_id, schedule_id)
 );
+
+CREATE TABLE reservation(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    booking_id int(15) NOT NULL, 
+    seat_id int(15) NOT NULL, 
+    FOREIGN KEY (booking_id) REFERENCES booking (id),
+    FOREIGN KEY (seat_id) REFERENCES seat (id),
+    INDEX (id, booking_id, seat_id)
+);
+
 
 CREATE TABLE holiday(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,

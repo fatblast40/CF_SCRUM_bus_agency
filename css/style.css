@@ -10,6 +10,7 @@ header h1 {
 	position: relative;
 }
 
+
 /*brand fonts*/
 .background_bc1 {
     background-color: #9F1B3C !important;
@@ -22,7 +23,7 @@ header h1 {
 }
 .background_bc1:hover {
     background-color: #9F1B3C;
-}
+}   
 .background_bc2:hover {
     background-color: #383938;
 }
@@ -39,6 +40,7 @@ header h1 {
 .color_bc2 {
     color: #FFFFFF;
 }
+
 
 
 #a:link {

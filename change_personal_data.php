@@ -8,7 +8,7 @@ require_once('includes/start_session_user.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Offers</title>
+	<title>Change Personal Data</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -29,10 +29,10 @@ require_once('includes/head_tag.php');
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="home_user.php">Offers</a></li>
+	        <li class=""><a href="home_user.php">Offers</a></li>
 			<li class=""><a href="reservation.php">Booking</a></li>
 			<li class=""><a href="my_reservations.php">My Reservations</a></li>
-			<li class=""><a href="change_personal_data.php">Change Personal Data</a></li>
+			<li class="active"><a href="change_personal_data.php">Change Personal Data</a></li>
 	      </ul>
 
 	    </div><!--/.nav-collapse -->
@@ -48,12 +48,17 @@ require_once('includes/header.php');
 
 	<!-- main -->
 	<section class="row">
+
 	<div class="col-xs-12">
 		<h3 class="brandfont text-center color_bc1">
-			Offers
+			Personal Data
 		</h3>
 		<hr class="border_bc1 ">	
 	</div>
+
+	<!-- put content here -->
+
+
 
 	</section>
 <!-- end wrapper to put footer on the bottom of the page -->

@@ -41,6 +41,19 @@ header h1 {
     color: #FFFFFF;
 }
 
+.border_bc1 {
+    border-color: rgb(159, 27, 60);
+
+}
+.border_bc2 {
+    border-color: #383938;
+   
+}
+.border_bc2 {
+    border-color: #FFFFFF;
+   
+}
+
 
 
 #a:link {
@@ -69,12 +82,12 @@ header h1 {
 	/*border: 1px solid;*/
 }
 
-
-
 .show_avatar{
 	height: 50px;
 	width: 50px;
+    margin-top: -7px;
 	border: 0.5px solid lightgrey;
+    
 }
 
 /* CSS used here will be applied after bootstrap.css */
@@ -97,14 +110,8 @@ header h1 {
 
 
 
-
-.heading_brandfont {
-    font-family: 'Satisfy', cursive;
-}
-
 .brandfont {
-font-family: 'Lobster Two',
-cursive;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 .shadow {

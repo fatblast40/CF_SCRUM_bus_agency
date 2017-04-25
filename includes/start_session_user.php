@@ -11,8 +11,11 @@
 
 
  // select logged-in users detail
- $res=mysql_query("SELECT first_name, family_name, username, users.id AS user_id, avatar, avatars.id AS avatar_id FROM users JOIN avatars ON users.FK_avatars=avatars.id WHERE users.id=".$_SESSION['user']);
- $userRow=mysql_fetch_array($res);
- $user_id = $userRow['user_id'];
- $user_avatar = $userRow['avatar'];
+ $res=mysqli_query($con, "SELECT title.name AS title, first_name, last_name, iban, user.id AS user_id, avatar.location AS avatar, avatar.id AS avatar_id FROM user JOIN avatar ON user.avatar_id=avatar.id JOIN payment ON user.id = payment.user_id JOIN title ON user.title_id=title.id WHERE user.id=".$_SESSION['user']);
+	 $userRow=mysqli_fetch_array($res);
+	 $user_id = $userRow['user_id'];
+	 $user_avatar = $userRow['avatar'];
+	 $user_last_name = $userRow['last_name'];
+	 $user_iban = $userRow['iban'];
+	 $user_title = $userRow['title'];
 ?>

@@ -100,17 +100,19 @@ CREATE TABLE session(
 
 CREATE TABLE model(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    seats int(5) NOT NULL, 
+    seats int(5) NOT NULL,
+    rows int(5) NOT NULL, 
+    columns int(5) NOT NULL, 
     INDEX (id)
 );
 
 INSERT INTO 
     model 
-        (seats)
+        (seats, rows, columns)
     VALUES 
-        (56),
-        (42),
-        (12);
+        (56, 14, 4),
+        (42, 14, 3),
+        (12, 4, 3);
 
 CREATE TABLE bus(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -315,7 +317,7 @@ CREATE TABLE booking(
     schedule_id int(15) NOT NULL, 
     FOREIGN KEY (payment_id) REFERENCES payment (id),
     FOREIGN KEY (schedule_id) REFERENCES schedule (id),
-    INDEX (id, payment_id)
+    INDEX (id, payment_id, schedule_id)
 );
 
 CREATE TABLE reservation(
@@ -324,7 +326,7 @@ CREATE TABLE reservation(
     seat_id int(15) NOT NULL, 
     FOREIGN KEY (booking_id) REFERENCES booking (id),
     FOREIGN KEY (seat_id) REFERENCES seat (id),
-    INDEX (id, payment_id)
+    INDEX (id, booking_id, seat_id)
 );
 
 

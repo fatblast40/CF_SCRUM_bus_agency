@@ -312,9 +312,21 @@ CREATE TABLE booking(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     stamp datetime NOT NULL,
     payment_id int(15) NOT NULL, 
+    schedule_id int(15) NOT NULL, 
     FOREIGN KEY (payment_id) REFERENCES payment (id),
+    FOREIGN KEY (schedule_id) REFERENCES schedule (id),
     INDEX (id, payment_id)
 );
+
+CREATE TABLE reservation(
+    id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    booking_id int(15) NOT NULL, 
+    seat_id int(15) NOT NULL, 
+    FOREIGN KEY (booking_id) REFERENCES booking (id),
+    FOREIGN KEY (seat_id) REFERENCES seat (id),
+    INDEX (id, payment_id)
+);
+
 
 CREATE TABLE holiday(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,

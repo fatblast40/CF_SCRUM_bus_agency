@@ -53,24 +53,12 @@ CREATE TABLE user(
     INDEX (id, title_id, avatar_id)
 );
 
-INSERT INTO 
-    user 
-        (title_id, avatar_id, first_name, last_name, email, tel, birth_year, password)
-    VALUES 
-        (1, 1, 'admin', 'admin', 'admin@codebus.com', '+43 666 123 1234', 1972, '1234');
-
 CREATE TABLE admin(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     user_id int(15) NOT NULL, 
     FOREIGN KEY (user_id) REFERENCES user (id),
     INDEX (id, user_id)
 );
-
-INSERT INTO 
-    admin 
-        (user_id)
-    VALUES 
-        (1);
 
 CREATE TABLE device(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,

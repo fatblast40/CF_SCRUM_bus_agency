@@ -28,6 +28,7 @@
  $yearError ="";
  $avatarError ="";
  $countryError ="";
+ $ibanError ="";
  $errTyp="";
  $errMSG="";
 
@@ -65,6 +66,10 @@
   $country = trim($_POST['country']);
   $country = strip_tags($country);
   $country = htmlspecialchars($country);
+
+  $iban = trim($_POST['iban']);
+  $iban = strip_tags($iban);
+  $iban = htmlspecialchars($iban);
 
 
   $title = $_POST['title'];
@@ -157,6 +162,13 @@
    $yearError = "Please enter your year of birth.";
   }
       // echo " year of birth: $error<br>";
+  
+  // IBAN validation
+  if (empty($iban)){
+   $error = 1;
+   $ibanError = "Please enter your IBAN.";
+  }
+      // echo " year of birth: $error<br>";
 
   // Avatar validation
   if (empty($avatar)){
@@ -177,9 +189,13 @@
     
    $query_user = "INSERT INTO user (first_name, last_name, email, password, title_id, avatar_id, tel, birth_year) VALUES('$first_name','$family_name', '$email', '$password', $title, $avatar, '$telephone', $year)";
    $res_user = mysqli_query($con, $query_user);
-
+   $user_id = mysqli_insert_id($con);
+   // echo $iban;
+   // echo '<br>'.$user_id;
+   $query_payment = "INSERT INTO payment (iban, user_id) VALUES('$iban', $user_id)";
+   $res_payment = mysqli_query($con, $query_payment);
    
-   if ($res_user) {
+   if ($res_user AND $res_payment) {
     $errTyp = "alert-success";
     $errMSG = "Successfully registered, you may login now";
     // echo $errMSG;
@@ -190,6 +206,8 @@
     unset($family_name);
     unset($telephone);
     unset($year);
+    unset($country);
+    unset($iban);
     unset($title);
     // unset($DOB);
    } else {
@@ -249,12 +267,16 @@ require_once('includes/head_tag.php');
           <span class="text-danger"><?php echo $familynameError; ?></span> 
           <!-- EMAIL -->
           <h4 class="color_bc1">E-Mail:</h4>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40" value="<?php echo $email ?>" />
+          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40">
           <span class="text-danger"><?php echo $emailError; ?></span>
           <!-- PASSWORD -->
           <h4 class="color_bc1">Password:</h4>
           <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
           <span class="text-danger"><?php echo $passError; ?></span>
+           <!-- IBAN -->
+          <h4 class="color_bc1">IBAN:</h4>
+          <input type="text" id="iban" name="iban" class="form-control" placeholder="Enter IBAN" maxlength="34" />
+          <span class="text-danger"><?php echo $ibanError; ?></span>
       </div>
       <!-- second row -->
       <div class="col-xs-12 col-md-6">
@@ -341,7 +363,9 @@ function save_json() {
         first_name: document.getElementById("first_name").value,
         family_name: document.getElementById("family_name").value,
         telephone: document.getElementById("telephone").value,
-        year: document.getElementById("year").value
+        year: document.getElementById("year").value,
+        country: document.getElementById("country").value,
+        iban: document.getElementById("iban").value
     }
 
     myJSON = JSON.stringify(signup);
@@ -358,6 +382,8 @@ function fill_data() {
     signup = JSON.parse(text);
     // $("#username").val(signup.username);
     $("#email").val(signup.email);
+    $("#country").val(signup.country);
+    $("#iban").val(signup.iban);
     $("#first_name").val(signup.first_name);
     $("#family_name").val(signup.family_name);
     $("#telephone").val(signup.telephone);

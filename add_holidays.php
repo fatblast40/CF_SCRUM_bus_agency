@@ -46,6 +46,12 @@ require_once('includes/head_tag.php');
 
 <!-- main -->
 	<section class="row">
+		<div class="col-xs-12">
+		<h3 class="brandfont text-center color_bc1">
+			Add Holidays
+		</h3>
+		<hr class="border_bc1 ">	
+	</div>
 <!-- put content here -->
 
 	</section>

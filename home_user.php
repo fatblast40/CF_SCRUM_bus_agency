@@ -8,7 +8,7 @@ require_once('includes/start_session_user.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Search Books</title>
+	<title>Offers</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -48,7 +48,12 @@ require_once('includes/header.php');
 
 	<!-- main -->
 	<section class="row">
-<!-- put content here -->
+	<div class="col-xs-12">
+		<h3 class="brandfont text-center color_bc1">
+			Offers
+		</h3>
+		<hr class="border_bc1 ">	
+	</div>
 
 	</section>
 <!-- end wrapper to put footer on the bottom of the page -->

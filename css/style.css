@@ -41,6 +41,19 @@ header h1 {
     color: #FFFFFF;
 }
 
+.border_bc1 {
+    border-color: rgb(159, 27, 60);
+
+}
+.border_bc2 {
+    border-color: #383938;
+   
+}
+.border_bc2 {
+    border-color: #FFFFFF;
+   
+}
+
 
 
 #a:link {
@@ -97,14 +110,8 @@ header h1 {
 
 
 
-
-.heading_brandfont {
-    font-family: 'Satisfy', cursive;
-}
-
 .brandfont {
-font-family: 'Lobster Two',
-cursive;
+    font-family: 'Share Tech Mono', monospace;
 }
 
 .shadow {

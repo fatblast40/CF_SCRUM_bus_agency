@@ -46,7 +46,12 @@ require_once('includes/head_tag.php');
 
 <!-- main -->
 	<section class="row">
-<!-- put content here -->
+	<div class="col-xs-12">
+		<h3 class="brandfont text-center color_bc1">
+			Risky Rides
+		</h3>
+		<hr class="border_bc1 ">	
+	</div>
 
 	</section>
 <!-- end wrapper to put footer on the bottom of the page -->

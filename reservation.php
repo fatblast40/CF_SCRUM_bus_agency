@@ -57,9 +57,26 @@ require_once('includes/header.php');
 					<hr class="border_bc1 ">	
 				</div>
 				<!-- add data here -->
+                <div class="col-xs-12">
+                    <?php
+                    require_once('includes/pick_seat.php');
+                    ?>
+                </div>
 			</section>
 		</div>
 	</div>
+<<<<<<< HEAD
+
+		<!--Where the content goes-->
+
+		<?php
+			require_once('includes/pick_seat.php');
+		?>
+
+
+	</section>
+=======
+>>>>>>> 8ad0a0d68096a1e85a77198a54791cb309810d28
 <!-- end wrapper to put footer on the bottom of the page -->
   </div>
 </div>

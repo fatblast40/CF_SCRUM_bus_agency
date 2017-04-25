@@ -20,7 +20,7 @@ $error = 0;
  $errMSG="";
 
 
- if ( isset($_POST['btn-signup']) ) {
+ if ( isset($_POST['btn-change_data']) ) {
   // sanitize user input to prevent sql injection
   // $username = trim($_POST['username']);
   // $username = strip_tags($username);
@@ -33,6 +33,10 @@ $error = 0;
   $password = trim($_POST['password']);
   $password = strip_tags($password);
   $password = htmlspecialchars($password);
+
+  $password_old = trim($_POST['password_old']);
+  $password_old = strip_tags($password_old);
+  $password_old = htmlspecialchars($password_old);
 
   $first_name = trim($_POST['first_name']);
   $first_name = strip_tags($first_name);
@@ -91,7 +95,7 @@ $error = 0;
    $emailError = "Please enter valid email address.";
   } else {
    // check whether the email exists or not
-   $query_email = "SELECT email FROM user WHERE user.email='$email'";
+   $query_email = "SELECT email FROM user WHERE user.email='$email' AND user.id != ".$_SESSION['user'];
    $result_email = mysqli_query($con, $query_email);
    $count_email = mysqli_num_rows($result_email);
    if($count_email!=0){
@@ -116,13 +120,18 @@ $error = 0;
   // not even the admin can see the password anymore
   $password = hash('sha256', $password);
   
+
+  if(empty($password_old)){
+   $error = 1;
+   $passError = "Please enter your password.";
+  }
+
+  $password_old = hash('sha256', $password_old);
+
   // firstname validation
   if (empty($first_name)){
    $error = 1;
    $firstnameError = "Please enter your first name.";
-  }else if (!preg_match("/^[a-zA-Z ]+$/",$first_name)) {
-   $error = 1;
-   $firstnameError = "First name must contain alphabets and space.";
   }
       // echo " firstname: $error<br>";
 
@@ -130,9 +139,6 @@ $error = 0;
   if (empty($family_name)){
    $error = 1;
    $familynameError = "Please enter your family name.";
-  }else if (!preg_match("/^[a-zA-Z ]+$/",$family_name)) {
-   $error = 1;
-   $familynameError = "Family name must contain alphabets and space.";
   }
       // echo " familyname: $error<br>";
   
@@ -171,41 +177,61 @@ $error = 0;
   }
 
   // if there's no error, continue to signup
+  
   if( $error == 0 ) {
    // echo "no error";
-    
-   $query_user = "INSERT INTO user (first_name, last_name, email, password, title_id, avatar_id, tel, birth_year) VALUES('$first_name','$family_name', '$email', '$password', $title, $avatar, '$telephone', $year)";
-   $res_user = mysqli_query($con, $query_user);
-   $user_id = mysqli_insert_id($con);
-   // echo $iban;
-   // echo '<br>'.$user_id;
-   $query_payment = "INSERT INTO payment (iban, user_id) VALUES('$iban', $user_id)";
-   $res_payment = mysqli_query($con, $query_payment);
    
-   if ($res_user AND $res_payment) {
-    $errTyp = "alert-success";
-    $errMSG = "Successfully registered, you may login now! <a href='index.php'><button type='button'  class='btn btn-success'>Log in</button></a>";
-    // echo $errMSG;
-    // unset($username);
-    unset($email);
-    unset($password);
-    unset($first_name);
-    unset($family_name);
-    unset($telephone);
-    unset($year);
-    unset($country);
-    unset($iban);
-    unset($title);
-    // unset($DOB);
-   } else {
-    $errTyp = "alert-danger";
-    $errMSG = "Something went wrong, try again later...";
-    // echo $errMSG;
-   }
-   
-  } 
- 
- 
+   $user_query = "SELECT id, email, last_name, password FROM user WHERE email='$user_email'";
+   $res_user = mysqli_query($con, $user_query);
+   $row_user = mysqli_fetch_array($res_user);
+   // echo $row_user['email'];
+   // $count_user = mysqli_num_rows($res_user); 
+
+	   if($row_user['password']==$password_old ) {
+		   $query_user = "UPDATE user SET
+		   first_name='$first_name',
+		   last_name='$family_name', 
+		   email='$email',
+		   password='$password', 
+		   title_id=$title, 
+		   avatar_id=$avatar, 
+		   tel='$telephone', 
+		   birth_year=$year
+		   WHERE user.id=".$_SESSION['user'];
+		   $res_user = mysqli_query($con, $query_user);
+		  
+		   // echo $iban;
+		   // echo '<br>'.$user_id;
+		   $query_payment = "UPDATE payment SET
+		   iban='$iban' WHERE user_id=".$_SESSION['user'];
+		   $res_payment = mysqli_query($con, $query_payment);
+		   
+		   if ($res_user AND $res_payment) {
+		    $errTyp = "alert-success";
+		    $errMSG = "Your Data was successfully changed!";
+		    // echo $errMSG;
+		    // unset($username);
+		    unset($email);
+		    unset($password);
+		    unset($first_name);
+		    unset($family_name);
+		    unset($telephone);
+		    unset($year);
+		    unset($country);
+		    unset($iban);
+		    unset($title);
+		    // unset($DOB);
+		   } else {
+		    $errTyp = "alert-danger";
+		    $errMSG = "Something went wrong, try again later...";
+		    // echo $errMSG;
+		   }
+		   
+		  } else {
+		  	echo '<br><br><br><br><br>password incorrect';
+		  } 
+	 
+	 }
  }
 
 ?>
@@ -262,11 +288,11 @@ require_once('includes/header.php');
 		<hr class="border_bc1 ">	
 	</div>
 
-	
+	<form method="post" autocomplete="off">
 
 	 <?php
-            if ( isset($_POST['btn-signup']) ) {
-              echo '<div class="col-xs-12 alert '.$errTyp.'">'.$errMSG.'</div>';
+            if ( isset($_POST['btn-change_data']) ) {
+              require_once('includes/alert_box.php');
             }
      ?>
       </div>
@@ -279,31 +305,32 @@ require_once('includes/header.php');
 
           <!-- FIRSTNAME -->
           <h4 class="color_bc1">First name:</h4>
-          <input type="text" id="first_name" name="first_name" class="form-control" placeholder="Enter first name" />
+          <input type="text" id="first_name" name="first_name" class="form-control" value="<?php echo $user_first_name; ?>" placeholder="Enter first name" />
           <span class="text-danger"><?php echo $firstnameError; ?></span>  
           <!-- FAMILYNAME -->
           <h4 class="color_bc1">Family name:</h4>
-          <input type="text" id="family_name" name="family_name" class="form-control" placeholder="Enter family name" />
+          <input type="text" id="family_name" name="family_name" class="form-control" value="<?php echo $user_last_name; ?>" placeholder="Enter family name" />
           <span class="text-danger"><?php echo $familynameError; ?></span> 
           <!-- EMAIL -->
           <h4 class="color_bc1">E-Mail:</h4>
-          <input type="email" id="email" name="email" class="form-control" placeholder="Enter Your Email" maxlength="40">
+          <input type="email" id="email" name="email" class="form-control" value="<?php echo $user_email; ?>" placeholder="Enter Your Email" maxlength="40">
           <span class="text-danger"><?php echo $emailError; ?></span>
-          <!-- PASSWORD -->
-          <h4 class="color_bc1">Password:</h4>
-          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
-          <span class="text-danger"><?php echo $passError; ?></span>
            <!-- IBAN -->
           <h4 class="color_bc1">IBAN:</h4>
-          <input type="text" id="iban" name="iban" class="form-control" placeholder="Enter IBAN" maxlength="34" />
+          <input type="text" id="iban" name="iban" class="form-control" value="<?php echo $user_iban; ?>" placeholder="Enter IBAN" maxlength="34" />
           <span class="text-danger"><?php echo $ibanError; ?></span>
+         <!-- Old PASSWORD -->
+          <h4 class="color_bc1">Current Password:</h4>
+          <input type="password" id="password_old" name="password_old" class="form-control" placeholder="Enter Password"/>
+          <span class="text-danger"><?php echo $passError; ?></span>
+          
       </div>
       <!-- second row -->
       <div class="col-xs-12 col-md-6">
          <!-- title -->
           <h4 class="color_bc1">Title:</h4>
           <div class="form-group">
-  <select class="form-control" id="title" name="title">
+  <select class="form-control" value="<?php echo $user_title_id; ?>" id="title" name="title">
           <?php
              // select all available titles
             $res_title=mysqli_query($con, "SELECT * FROM title");
@@ -321,18 +348,22 @@ require_once('includes/header.php');
           <!-- <span class="text-danger"><?php echo $titlenameError; ?></span>   -->
           <!-- Telephone -->
           <h4 id="telephone_h4" class="color_bc1">Telephone:</h4>
-          <input type="text" id="telephone" name="telephone" class="form-control" placeholder="Enter telephone" />
+          <input type="text" id="telephone" name="telephone" class="form-control" value="<?php echo $user_telephone; ?>" placeholder="Enter telephone" />
           <span class="text-danger"><?php echo $telephoneError; ?></span> 
           <!-- Year of Birth -->
           <h4 class="color_bc1">Year of Birth</h4>
-          <input type="number" id="year" name="year" class="form-control" placeholder="Enter your year of birth" value="<?php echo $year ?>" />
+          <input type="number" id="year" name="year" class="form-control" placeholder="Enter your year of birth" value="<?php echo $user_year; ?>" />
           <span class="text-danger"><?php echo $yearError; ?></span>
           <!-- Country -->
           <h4 class="color_bc1">Current country of residence:</h4>
-          <input type="text" id="country" name="country" class="form-control" placeholder="Enter your current country" />
+          <input type="text" id="country" name="country" class="form-control"  placeholder="Enter your current country" />
           <span class="text-danger"><?php echo $countryError; ?></span>
 
-          
+           <!-- NEW PASSWORD -->
+          <h4 class="color_bc1">New Password:</h4>
+          <input type="password" id="password" name="password" class="form-control" placeholder="Enter Password" maxlength="15" />
+          <span class="text-danger"><?php echo $passError; ?></span>
+                    
       </div>
       <div class="col-xs-12 text-center">
         <hr>
@@ -357,13 +388,9 @@ require_once('includes/header.php');
       <div class="col-xs-12">
         <!-- SUBMIT -->
           <hr />
-          <button type="submit" id="btn-signup" class="btn btn-block btn-primary background_bc1" name="btn-signup">Sign Up</button>
+          <button type="submit" id="btn-change_data" class="btn btn-block btn-primary background_bc1" name="btn-change_data">Change Personal Data</button>
       </div>
-      <div class="col-xs-12">
-          <hr />
-          <a href="index.php">Sign in Here...</a>
-        </form>
-      </div>
+      </form>
       </div>
       </div>
       </div>

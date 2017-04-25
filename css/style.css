@@ -69,12 +69,12 @@ header h1 {
 	/*border: 1px solid;*/
 }
 
-
-
 .show_avatar{
 	height: 50px;
 	width: 50px;
+    margin-top: -7px;
 	border: 0.5px solid lightgrey;
+    
 }
 
 /* CSS used here will be applied after bootstrap.css */

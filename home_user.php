@@ -29,9 +29,10 @@ require_once('includes/head_tag.php');
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="home_user.php">Search for Books</a></li>
-			<li class=""><a href="your_books.php">Your Books</a></li>
-			<li class=""><a href="opening_hours.php">Opening Hours</a></li>
+	        <li class="active"><a href="home_user.php">Offers</a></li>
+			<li class=""><a href="reservation.php">Booking</a></li>
+			<li class=""><a href="my_reservations.php">My Reservations</a></li>
+			<li class=""><a href="change_personal_data.php">Change Personal Data</a></li>
 	      </ul>
 
 	    </div><!--/.nav-collapse -->
@@ -41,60 +42,13 @@ require_once('includes/switch_user_view.php');
 
 	  </div>
 
-
-
 		<?php
 require_once('includes/header.php');
 		?>
 
 	<!-- main -->
 	<section class="row">
-	
-
-		<div class="col-xs-12">
-			<h2 class="brandfont text-center">Search for a book</h2>
-			<hr>
-		</div>
-		
-		<?php
-require_once('includes/search_bar.php');
-		?>
-		
-		<div class="col-xs-12">
-			<div class="row">
-			<?php 			
-				 // select all available books
-				 
-				if ( isset($_GET['btn-search']) ){
-require_once('includes/process_search_query.php');
-					// get telephone number
-					$res_library=mysql_query("SELECT * FROM libraries");
-					$row_library=mysql_fetch_array($res_library);
-					$telephone = $row_library['telephone'];
-
-require_once('includes/count_search_result.php');	
-require_once('includes/while_loop_home_user.php');						
-			  		
-				} else {
-
-					$res_book=mysql_query("SELECT 
-					title, first_name, family_name, image, publishing_year, genre, age, available, books.id as books_id, authors.id as authors_id
-					FROM books 
-					JOIN authors ON books.FK_authors=authors.id
-					JOIN genres ON books.FK_genres=genres.id
-					JOIN age_recommendations ON books.FK_age_recommendations=age_recommendations.id 
-					JOIN libraries ON books.FK_libraries=libraries.id
-					GROUP BY books_id 
-					ORDER BY title ASC");
-				
-				
-require_once('includes/while_loop_home_user.php');
-
-  				}
-	  				
-			?>
-			</div>
-		</div>
+<!-- put content here -->
 
 	</section>
 <!-- end wrapper to put footer on the bottom of the page -->

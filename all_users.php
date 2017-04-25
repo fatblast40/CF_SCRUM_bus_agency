@@ -7,7 +7,7 @@ require_once('includes/start_session_admin.php');
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Home Page</title>
+	<title>All Users - Admin</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -28,9 +28,9 @@ require_once('includes/head_tag.php');
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="home_admin.php">Risky Rides</a></li>
+	        <li><a href="home_admin.php">Risky Rides</a></li>
 	        <li><a href="all_rides.php">All Rides</a></li>
-	        <li><a href="all_users.php">All Users</a></li>
+	        <li class="active"><a href="all_users.php">All Users</a></li>
 	        <li><a href="add_holidays.php">Add holidays</a></li>
 	      </ul>
 

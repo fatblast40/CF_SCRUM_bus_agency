@@ -197,7 +197,7 @@
    
    if ($res_user AND $res_payment) {
     $errTyp = "alert-success";
-    $errMSG = "Successfully registered, you may login now";
+    $errMSG = "Successfully registered, you may login now! <a href='index.php'><button type='button'  class='btn btn-success'>Log in</button></a>";
     // echo $errMSG;
     // unset($username);
     unset($email);

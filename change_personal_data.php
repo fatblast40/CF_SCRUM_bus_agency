@@ -1,13 +1,14 @@
 <?php
-require_once('includes/start_session_admin.php');
+require_once('includes/start_session_user.php');
 ?>
+
 <?php
 
 ?>
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Admin Home Page</title>
+	<title>Change Personal Data</title>
 	<?php
 require_once('includes/head_tag.php');
 	?>
@@ -28,23 +29,24 @@ require_once('includes/head_tag.php');
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav">
-	        <li class="active"><a href="home_admin.php">Risky Rides</a></li>
-	        <li><a href="all_rides.php">All Rides</a></li>
-	        <li><a href="all_users.php">All Users</a></li>
-	        <li><a href="add_holidays.php">Add holidays</a></li>
+	        <li class=""><a href="home_user.php">Offers</a></li>
+			<li class=""><a href="reservation.php">Booking</a></li>
+			<li class=""><a href="my_reservations.php">My Reservations</a></li>
+			<li class="active"><a href="change_personal_data.php">Change Personal Data</a></li>
 	      </ul>
 
 	    </div><!--/.nav-collapse -->
 			        	<?php
-	require_once('includes/switch_admin_view.php');
+require_once('includes/switch_user_view.php');
 		?>
 
 	  </div>
+
 		<?php
-	require_once('includes/header.php');
+require_once('includes/header.php');
 		?>
 
-<!-- main -->
+	<!-- main -->
 	<section class="row">
 <!-- put content here -->
 

@@ -1,5 +1,7 @@
 // Bus diagram
 
+var selectedSeats = {};
+
 function createSeatRow(targetDOM, startCol, endCol, rowNum, vertical) {
 
     for (var seatNum = startCol ; seatNum <= endCol; seatNum++) {
@@ -51,15 +53,15 @@ function bookSeat(row, column) {
 }
 
 function updateSeats() {
-    $.getJSON('get_seats.php', function (seats) {
-        seats.forEach(function (seat) {
+    $.getJSON('get_seats.php', function (bus) {
+        createSeatGrid($('.seats-diagram'), bus.rows, bus.columns, true);
+        bus.seats.forEach(function (seat) {
             createBookingButton(seat.col, seat.row, seat.booked);
         })
     })
 }
 
 $(document).ready(function () {
-        createSeatGrid($('.seats-diagram'), 2, 14, false);
         updateSeats();
     }
 );

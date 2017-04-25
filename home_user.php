@@ -47,15 +47,19 @@ require_once('includes/header.php');
 		?>
 
 	<!-- main -->
-	<section class="row">
-	<div class="col-xs-12">
-		<h3 class="brandfont text-center color_bc1">
-			Offers
-		</h3>
-		<hr class="border_bc1 ">	
+	<div class="row">
+		<div class="col-xs-12">
+			<section class="row">
+				<div class="col-xs-12">
+					<h3 class="brandfont text-center color_bc1">
+						Offers
+					</h3>
+					<hr class="border_bc1 ">	
+				</div>
+				<!-- add data here -->
+			</section>
+		</div>
 	</div>
-
-	</section>
 <!-- end wrapper to put footer on the bottom of the page -->
   </div>
 </div>

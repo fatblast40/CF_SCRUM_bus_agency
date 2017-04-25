@@ -17,10 +17,18 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../css/busdiagram.css">
     <title>Pick seat</title>
 </head>
 <body>
-    <div class="seat-diagram"></div>
+
+    <div class="container">
+        <div class="panel panel-default">
+            <div class="panel-heading">Please pick your seat!</div>
+            <div class="seats-diagram"></div>
+        </div>
+    </div>
+
     <script type="application/javascript" src="../js/busdiagram.js"></script>
 </body>
 </html>

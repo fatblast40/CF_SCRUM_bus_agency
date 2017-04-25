@@ -1,9 +1,9 @@
 // Bus diagram
 
-function createSeatRow(targetDOM, columnCount, rowNum, vertical) {
-    var columnWidth = Math.floor(12 / columnCount);
-    for (var seatNum = 1 ; seatNum <= columnCount; seatNum++) {
-        var seatDOM = $('<div class="diagram-seat">').addClass('col-xs-'+columnWidth);
+function createSeatRow(targetDOM, startCol, endCol, rowNum, vertical) {
+
+    for (var seatNum = startCol ; seatNum <= endCol; seatNum++) {
+        var seatDOM = $('<div class="diagram-col">');
         if (vertical) {
             seatDOM.attr('id', 'seat-'+rowNum+'-'+seatNum);
         } else {
@@ -14,9 +14,12 @@ function createSeatRow(targetDOM, columnCount, rowNum, vertical) {
 }
 
 function createSeatGrid(targetDOM, rowCount, columnCount, vertical) {
+    if (vertical) {
+        rowCount = [columnCount, columnCount = rowCount][0];
+    }
     for (var rowNum = 1; rowNum <= rowCount; rowNum++) {
-        var rowDOM = $('<div class="row diagram-row">');
-        createSeatRow(rowDOM, columnCount, rowNum, vertical);
+        var rowDOM = $('<div class="diagram-row">');
+        createSeatRow(rowDOM, 1, columnCount, rowNum, vertical);
         targetDOM.append(rowDOM);
     }
 }
@@ -24,19 +27,25 @@ function createSeatGrid(targetDOM, rowCount, columnCount, vertical) {
 function createBookingButton(row, column, booked) {
     var targetDOM = $('#seat-'+row+'-'+column);
     targetDOM.empty();
-    var buttonDOM = $('<button class="btn">');
+    var buttonDOM = $('<img class="seat-image rotateimg90 " src="../pictures/seat.svg">');
     if (booked) {
         buttonDOM.attr('disabled', true);
+        buttonDOM.attr('src', "../pictures/seat_company_purple.svg");
+
     } else {
+        buttonDOM.addClass('clickable-image');
+        buttonDOM.attr('src', "../pictures/seat_green.svg");
         buttonDOM.click(function () {
             bookSeat(row, column);
+            buttonDOM.attr('src', "../pictures/seat_blue.svg");
+
         });
     }
-    buttonDOM.text('sad');
     targetDOM.append(
         buttonDOM
     );
 }
+
 function bookSeat(row, column) {
     console.log('booking seat row: '+row+', column: '+column);
 }
@@ -50,7 +59,7 @@ function updateSeats() {
 }
 
 $(document).ready(function () {
-        createSeatGrid($('.seat-diagram'), 2, 3, false);
+        createSeatGrid($('.seats-diagram'), 2, 14, false);
         updateSeats();
     }
 );

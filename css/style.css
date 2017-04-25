@@ -10,6 +10,61 @@ header h1 {
 	position: relative;
 }
 
+/* custom inclusion of right, left and below tabs */
+
+.tabs-right > .nav-tabs,
+.tabs-left > .nav-tabs {
+  border-bottom: 0;
+}
+
+.tab-content > .tab-pane,
+.pill-content > .pill-pane {
+  display: none;
+}
+
+.tab-content > .active,
+.pill-content > .active {
+  display: block;
+}
+
+
+.tabs-left > .nav-tabs > li,
+.tabs-right > .nav-tabs > li {
+  float: none;
+}
+
+.tabs-left > .nav-tabs > li > a,
+.tabs-right > .nav-tabs > li > a {
+  min-width: 74px;
+  margin-right: 0;
+  margin-bottom: 3px;
+}
+
+.tabs-left > .nav-tabs {
+  /*float: left;*/
+  /*margin-right: 19px;*/
+  border-right: 1px solid #ddd;
+}
+
+.tabs-left > .nav-tabs > li > a {
+  margin-right: -16px;
+  -webkit-border-radius: 4px 0 0 4px;
+     -moz-border-radius: 4px 0 0 4px;
+          border-radius: 4px 0 0 4px;
+}
+
+.tabs-left > .nav-tabs > li > a:hover,
+.tabs-left > .nav-tabs > li > a:focus {
+  border-color: #eeeeee #dddddd #eeeeee #eeeeee;
+}
+
+.tabs-left > .nav-tabs .active > a,
+.tabs-left > .nav-tabs .active > a:hover,
+.tabs-left > .nav-tabs .active > a:focus {
+  border-color: #ddd transparent #ddd #ddd;
+
+}
+
 
 /*brand fonts*/
 .background_bc1 {
@@ -18,7 +73,7 @@ header h1 {
 .background_bc2 {
     background-color: #383938;
 }
-.background_bc2 {
+.background_bc3 {
     background-color: #FFFFFF;
 }
 .background_bc1:hover {
@@ -27,7 +82,7 @@ header h1 {
 .background_bc2:hover {
     background-color: #383938;
 }
-.background_bc2:hover {
+.background_bc3:hover {
     background-color: #FFFFFF;
 }
 
@@ -37,7 +92,7 @@ header h1 {
 .color_bc2 {
     color: #383938;
 }
-.color_bc2 {
+.color_bc3 {
     color: #FFFFFF;
 }
 

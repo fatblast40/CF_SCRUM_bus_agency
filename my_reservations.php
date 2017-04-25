@@ -50,13 +50,55 @@ require_once('includes/header.php');
 	<div class="row">
 		<div class="col-xs-12">
 			<section class="row">
-				<div class="col-xs-12">
+				<!-- <div class="col-xs-12">
 					<h3 class="brandfont text-center color_bc1">
 						My Reservations
 					</h3>
 					<hr class="border_bc1 ">	
+				</div> -->
+				
+	<div class="col-xs-12 margin-top">
+          	
+      <!-- tabs left -->
+      <div class="row tabbable tabs-left">
+        <ul class="col-xs-1 nav nav-tabs">
+          <li class="active"><a href="#a" data-toggle="tab">Current</a></li>
+          <li><a href="#b" data-toggle="tab">Historic</a></li>
+        </ul>
+        <div class="tab-content">
+         <div class="col-xs-11 tab-pane active" id="a">
+	         <div class="row">
+				<div class="col-xs-12">
+					<h3 class="brandfont text-center color_bc1">
+						My Current Reservations
+					</h3>
+					<hr class="border_bc1 ">	
 				</div>
-				<!-- add data here -->
+			</div>
+         </div>
+         <div class="col-xs-11 tab-pane" id="b">
+	         <div class="row">
+				<div class="col-xs-12">
+					<h3 class="brandfont text-center color_bc1">
+						My Historic Reservations
+					</h3>
+					<hr class="border_bc1 ">
+					<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>adsf	
+				</div>
+			</div>
+         </div>
+        </div>
+      </div>
+      <!-- /tabs -->
+      
+    </div>   
+
+
+
+
+
+
+
 			</section>
 		</div>
 	</div>

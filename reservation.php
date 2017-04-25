@@ -12,6 +12,8 @@ require_once('includes/start_session_user.php');
 	<?php
 require_once('includes/head_tag.php');
 	?>
+    <link rel="stylesheet" href="css/busdiagram.css">
+
 </head>
 <body>
 <div id="wrap">
@@ -57,17 +59,23 @@ require_once('includes/header.php');
 					<hr class="border_bc1 ">	
 				</div>
 				<!-- add data here -->
+                <div class="col-xs-12">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">Please pick your seat!</div>
+                        <div class="seats-diagram"></div>
+                    </div>
+                </div>
 			</section>
 		</div>
 	</div>
-<!-- end wrapper to put footer on the bottom of the page -->
-  </div>
-</div>
+
+
 	<!-- footer -->
 	<?php
 require_once('includes/footer.php');
 	?>
-	 
+      <script type="application/javascript" src="js/busdiagram.js"></script>
+
 </body>
 </html>
 <?php ob_end_flush(); ?>

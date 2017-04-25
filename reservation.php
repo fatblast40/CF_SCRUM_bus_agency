@@ -57,6 +57,11 @@ require_once('includes/header.php');
 					<hr class="border_bc1 ">	
 				</div>
 				<!-- add data here -->
+                <div class="col-xs-12">
+                    <?php
+                    require_once('includes/pick_seat.php');
+                    ?>
+                </div>
 			</section>
 		</div>
 	</div>

@@ -29,17 +29,17 @@ function createSeatGrid(targetDOM, rowCount, columnCount, vertical) {
 function createBookingButton(row, column, booked) {
     var targetDOM = $('#seat-'+row+'-'+column);
     targetDOM.empty();
-    var buttonDOM = $('<img class="seat-image rotateimg90 " src="../pictures/seat.svg">');
+    var buttonDOM = $('<img class="seat-image rotateimg90 " src="./pictures/seat.svg">');
     if (booked) {
         buttonDOM.attr('disabled', true);
-        buttonDOM.attr('src', "../pictures/seat_company_purple.svg");
+        buttonDOM.attr('src', "./pictures/seat_company_purple.svg");
 
     } else {
         buttonDOM.addClass('clickable-image');
-        buttonDOM.attr('src', "../pictures/seat_green.svg");
+        buttonDOM.attr('src', "./pictures/seat_green.svg");
         buttonDOM.click(function () {
             bookSeat(row, column);
-            buttonDOM.attr('src', "../pictures/seat_blue.svg");
+            buttonDOM.attr('src', "./pictures/seat_blue.svg");
 
         });
     }

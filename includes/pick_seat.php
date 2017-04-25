@@ -17,7 +17,7 @@
 
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="../css/busdiagram.css">
+    <link rel="stylesheet" href="css/busdiagram.css">
     <title>Pick seat</title>
 </head>
 <body>
@@ -29,6 +29,6 @@
         </div>
     </div>
 
-    <script type="application/javascript" src="../js/busdiagram.js"></script>
+    <script type="application/javascript" src="js/busdiagram.js"></script>
 </body>
 </html>

@@ -10,6 +10,27 @@ header h1 {
 	position: relative;
 }
 
+#generate_destination{
+  margin-left: auto;
+    margin-right:auto;
+    width:90%;  
+}
+.wrap_destination{
+   margin:5%;
+    
+    padding-top: 2%;
+    padding-left:10%;
+    padding-right:10%;
+    padding-bottom: 10%;
+    border: 1px solid lightgrey;
+    -webkit-border-radius: 4px 0 0 4px;
+    -moz-border-radius: 4px 0 0 4px;
+    border-radius: 4px 0 0 4px;
+}
+
+/* custom inclusion of right, left and below tabs */
+
+
 
 /*brand fonts*/
 .background_bc1 {
@@ -18,7 +39,7 @@ header h1 {
 .background_bc2 {
     background-color: #383938;
 }
-.background_bc2 {
+.background_bc3 {
     background-color: #FFFFFF;
 }
 .background_bc1:hover {
@@ -27,18 +48,18 @@ header h1 {
 .background_bc2:hover {
     background-color: #383938;
 }
-.background_bc2:hover {
+.background_bc3:hover {
     background-color: #FFFFFF;
 }
 
 .color_bc1 {
-    color: #9F1B3C;
+    color: #9F1B3C !important;
 }
 .color_bc2 {
-    color: #383938;
+    color: #383938 !important;
 }
-.color_bc2 {
-    color: #FFFFFF;
+.color_bc3 {
+    color: #FFFFFF !important;
 }
 
 .border_bc1 {
@@ -49,7 +70,7 @@ header h1 {
     border-color: #383938;
    
 }
-.border_bc2 {
+.border_bc3 {
     border-color: #FFFFFF;
    
 }

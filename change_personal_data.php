@@ -227,9 +227,7 @@ $error = 0;
 		    // echo $errMSG;
 		   }
 		   
-		  } else {
-		  	echo '<br><br><br><br><br>password incorrect';
-		  } 
+		  }
 	 
 	 }
  }

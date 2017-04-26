@@ -39,11 +39,13 @@ VALUES (?);
 SQL
 );
 
-function checkAndPrintSQLError() {
+function checkAndPrintSQLError($successMessage) {
     global $con;
     $error = $con->error;
     if ($error) {
         echo "<p>MySQL error:: $error</p>";
+    } else {
+        echo $successMessage;
     }
 }
 
@@ -52,8 +54,9 @@ function addBusModel($seatCount, $seatRows, $seatColumns) {
     global $con;
     $createModelQuery->bind_param('iii', $seatCount, $seatRows, $seatColumns);
     $createModelQuery->execute();
-    checkAndPrintSQLError();
-    return $con->insert_id;
+    $id = $con->insert_id;
+    checkAndPrintSQLError("<p>added new bus model id: $id, seats: $seatCount, seat rows: $seatRows, columns: $seatColumns</p>");
+    return $id;
 }
 
 function getModelId($seatCount) {
@@ -61,7 +64,7 @@ function getModelId($seatCount) {
     $getModelQuery->bind_param('i', $seatCount);
     $getModelQuery->execute();
     $modelResult = $getModelQuery->get_result();
-    checkAndPrintSQLError();
+    checkAndPrintSQLError('<p>get Bus Model</p>');
     $data = $modelResult->fetch_assoc();
     if (isset($data['id'])) {
         return $data['id'];
@@ -76,8 +79,9 @@ function addSeat($modelId, $seatNum, $row, $col, $discountId) {
     global $con;
     $createSeatQuery->bind_param('iiiii', $modelId, $seatNum, $row, $col, $discountId);
     $createSeatQuery->execute();
-    checkAndPrintSQLError();
-    return $con->insert_id;
+    $id = $con->insert_id;
+    checkAndPrintSQLError("<p>added seat id: $id, number: $seatNum in row $row, col $col, discountID: $discountId</p>");
+    return $id;
 }
 
 function addBus($modelId) {
@@ -85,8 +89,9 @@ function addBus($modelId) {
     global $con;
     $createSeatQuery->bind_param('i', $modelId);
     $createSeatQuery->execute();
-    checkAndPrintSQLError();
-    return $con->insert_id;
+    $id = $con->insert_id;
+    checkAndPrintSQLError("<p>added bus id: $id, model $modelId</p>");
+    return $id;
 }
 
 function addBusLayout($modelId, $seatData)
@@ -96,7 +101,7 @@ function addBusLayout($modelId, $seatData)
         foreach ($seatRow as $colNum => $seatDiscountId) {
             if ($seatDiscountId >= 1) {
                 addSeat($modelId, $seatNum, $rowNum, $colNum, $seatDiscountId);
-                echo "<p>added seat $seatNum in row $rowNum, col $colNum, discountID: $seatDiscountId</p>";
+                echo "";
                 $seatNum++;
             }
         }

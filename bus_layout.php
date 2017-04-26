@@ -39,13 +39,20 @@ VALUES (?);
 SQL
 );
 
-
+function checkAndPrintSQLError() {
+    global $con;
+    $error = $con->error;
+    if (!$error) {
+        echo "<p>MySQL error:: $error</p>";
+    }
+}
 
 function addBusModel($seatCount, $seatRows, $seatColumns) {
     global $createModelQuery;
     global $con;
     $createModelQuery->bind_param('iii', $seatCount, $seatRows, $seatColumns);
     $createModelQuery->execute();
+    checkAndPrintSQLError();
     return $con->insert_id;
 }
 
@@ -54,6 +61,7 @@ function getModelId($seatCount) {
     $getModelQuery->bind_param('i', $seatCount);
     $getModelQuery->execute();
     $modelResult = $getModelQuery->get_result();
+    checkAndPrintSQLError();
     $data = $modelResult->fetch_assoc();
     if (isset($data['id'])) {
         return $data['id'];
@@ -68,6 +76,7 @@ function addSeat($modelId, $seatNum, $row, $col, $discountId) {
     global $con;
     $createSeatQuery->bind_param('iiiii', $modelId, $seatNum, $row, $col, $discountId);
     $createSeatQuery->execute();
+    checkAndPrintSQLError();
     return $con->insert_id;
 }
 
@@ -76,6 +85,7 @@ function addBus($modelId) {
     global $con;
     $createSeatQuery->bind_param('i', $modelId);
     $createSeatQuery->execute();
+    checkAndPrintSQLError();
     return $con->insert_id;
 }
 

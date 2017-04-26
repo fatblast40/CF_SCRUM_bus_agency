@@ -10,7 +10,6 @@ INSERT INTO `bus` (`id`, `model_id`) VALUES
 (5, 3);
 
 
-
 --
 -- Dumping data for table `model`
 --

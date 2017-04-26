@@ -42,7 +42,7 @@ SQL
 function checkAndPrintSQLError() {
     global $con;
     $error = $con->error;
-    if (!$error) {
+    if ($error) {
         echo "<p>MySQL error:: $error</p>";
     }
 }

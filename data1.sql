@@ -10,6 +10,7 @@ INSERT INTO `bus` (`id`, `model_id`) VALUES
 (5, 3);
 
 
+
 --
 -- Dumping data for table `model`
 --
@@ -111,10 +112,10 @@ INSERT INTO
     reservation 
         (`id`, `booking_id`, `seat_id`)
     VALUES 
-        (1, 0.00),
-        (2, 0.10),
-        (3, 0.20),
-        (4, 0.25);
+        (1, 1, 1),
+        (2, 1, 2),
+        (3, 1, 3),
+        (4, 2, 1);
 
 --
 -- Dumping data for table `booking`

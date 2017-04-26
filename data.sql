@@ -70,6 +70,7 @@ INSERT INTO `holiday` (`id`, `event`) VALUES
 (25, '2018-12-25'),
 (26, '2018-12-26');
 
+
 --
 -- Dumping data for table `user`
 --

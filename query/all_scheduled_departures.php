@@ -3,9 +3,9 @@
 $query_current_scheduled_depurtures = 
     "
         SELECT 
-            schedule.departure AS Departure Date,
-            schedule.departure AS Departure Time,    
-            route.destination AS Destination,
+            date_format(date(schedule.departure),'%a %d %M %Y') AS departure_date,
+            date_format(date(schedule.departure),'%H %i') AS departure_time,   
+            route.destination AS destination,
         FROM `schedule`
             INNER JOIN `payment` on user.id = payment.user_id
             INNER JOIN `booking` on payment.id = booking.payment_id

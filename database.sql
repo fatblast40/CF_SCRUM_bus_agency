@@ -9,13 +9,6 @@ CREATE TABLE title(
     INDEX (id)
 );
 
-INSERT INTO 
-    title 
-        (name)
-    VALUES 
-        ('Mr.'),
-        ('Ms.'),
-        ('Mrs.');
 
 CREATE TABLE avatar(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -23,20 +16,6 @@ CREATE TABLE avatar(
     INDEX (id)
 );
 
-INSERT INTO 
-    avatar 
-        (location)
-    VALUES 
-        ('pictures/avatar1.jpg'),
-        ('pictures/avatar2.jpg'),
-        ('pictures/avatar3.jpg'),
-        ('pictures/avatar4.jpg'),
-        ('pictures/avatar5.jpg'),
-        ('pictures/avatar6.jpg'),
-        ('pictures/avatar7.jpg'),
-        ('pictures/avatar8.jpg'),
-        ('pictures/avatar9.jpg'),
-        ('pictures/avatar10.jpg');
 
 CREATE TABLE user(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -66,13 +45,6 @@ CREATE TABLE device(
     INDEX (id)
 );
 
-INSERT INTO 
-    device 
-        (name)
-    VALUES 
-        ('Mobile'),
-        ('Tablet'),
-        ('Desktop');
 
 CREATE TABLE session(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -94,13 +66,6 @@ CREATE TABLE model(
     INDEX (id)
 );
 
-INSERT INTO 
-    model 
-        (seats, rows, columns)
-    VALUES 
-        (56, 14, 4),
-        (42, 14, 3),
-        (12, 4, 3);
 
 CREATE TABLE bus(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -109,30 +74,12 @@ CREATE TABLE bus(
     INDEX (id)
 );
 
-INSERT INTO 
-    bus 
-        (model_id)
-    VALUES 
-        (1),
-        (1),
-        (1),
-        (2),
-        (3);
 
 CREATE TABLE discount(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
     rate decimal(3,2) NOT NULL, 
     INDEX (id)
 );
-
-INSERT INTO 
-    discount 
-        (rate)
-    VALUES 
-        (0.00),
-        (0.10),
-        (0.20),
-        (0.25);
 
 CREATE TABLE seat(
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -146,120 +93,7 @@ CREATE TABLE seat(
     INDEX (id, model_id, discount_id)
 );
 
-INSERT INTO 
-    seat 
-        (model_id, num, row, col, discount_id)
-    VALUES 
-        (1, 1, 1, 1, 3),
-        (1, 2, 1, 2, 3),
-        (1, 3, 1, 3, 3),
-        (1, 4, 1, 4, 3),
-        (1, 5, 2, 1, 3),
-        (1, 6, 2, 2, 3),
-        (1, 7, 2, 3, 3),
-        (1, 8, 2, 4, 3),
-        (1, 9, 3, 1, 3),
-        (1, 10, 3, 2, 3),
-        (1, 11, 3, 3, 3),
-        (1, 12, 3, 4, 3),
-        (1, 13, 4, 1, 3),
-        (1, 14, 4, 2, 3),
-        (1, 15, 4, 3, 3),
-        (1, 16, 4, 4, 3),
-        (1, 17, 5, 1, 3),
-        (1, 18, 5, 2, 2),
-        (1, 19, 5, 3, 2),
-        (1, 20, 5, 4, 3),
-        (1, 21, 6, 1, 2),
-        (1, 22, 6, 2, 2),
-        (1, 23, 6, 3, 2),
-        (1, 24, 6, 4, 2),
-        (1, 25, 7, 1, 2),
-        (1, 26, 7, 2, 2),
-        (1, 27, 7, 3, 2),
-        (1, 28, 7, 4, 2),
-        (1, 29, 8, 1, 2),
-        (1, 30, 8, 2, 2),
-        (1, 31, 8, 3, 2),
-        (1, 32, 8, 4, 2),
-        (1, 33, 9, 1, 2),
-        (1, 34, 9, 2, 2),
-        (1, 35, 9, 3, 2),
-        (1, 36, 9, 4, 2),
-        (1, 37, 10, 1, 1),
-        (1, 38, 10, 2, 1),
-        (1, 39, 10, 3, 1),
-        (1, 40, 10, 4, 1),
-        (1, 41, 11, 1, 1),
-        (1, 42, 11, 2, 1),
-        (1, 43, 11, 3, 1),
-        (1, 44, 11, 4, 1),
-        (1, 45, 12, 1, 1),
-        (1, 46, 12, 2, 1),
-        (1, 47, 12, 3, 1),
-        (1, 48, 12, 4, 1),
-        (1, 49, 13, 1, 1),
-        (1, 50, 13, 2, 1),
-        (1, 51, 13, 3, 1),
-        (1, 52, 13, 4, 1),
-        (1, 53, 14, 1, 1),
-        (1, 54, 14, 2, 1),
-        (1, 55, 14, 3, 1),
-        (1, 56, 14, 4, 1),
-        (2, 1, 1, 1, 3),
-        (2, 2, 1, 2, 3),
-        (2, 3, 1, 3, 3),
-        (2, 4, 2, 1, 3),
-        (2, 5, 2, 2, 3),
-        (2, 6, 2, 3, 3),
-        (2, 7, 3, 1, 3),
-        (2, 8, 3, 2, 3),
-        (2, 9, 3, 3, 3),
-        (2, 10, 4, 1, 3),
-        (2, 11, 4, 2, 3),
-        (2, 12, 4, 3, 3),
-        (2, 13, 5, 1, 3),
-        (2, 14, 5, 2, 2),
-        (2, 15, 5, 3, 3),
-        (2, 16, 6, 1, 2),
-        (2, 17, 6, 2, 2),
-        (2, 18, 6, 3, 2),
-        (2, 19, 7, 1, 2),
-        (2, 20, 7, 2, 2),
-        (2, 21, 7, 3, 2),
-        (2, 22, 8, 1, 2),
-        (2, 23, 8, 2, 2),
-        (2, 24, 8, 3, 2),
-        (2, 25, 9, 1, 2),
-        (2, 26, 9, 2, 2),
-        (2, 27, 9, 3, 2),
-        (2, 28, 10, 1, 2),
-        (2, 29, 10, 2, 1),
-        (2, 30, 10, 3, 1),
-        (2, 31, 11, 1, 1),
-        (2, 32, 11, 2, 1),
-        (2, 33, 11, 3, 1),
-        (2, 34, 12, 1, 1),
-        (2, 35, 12, 2, 1),
-        (2, 36, 12, 3, 1),
-        (2, 37, 13, 1, 1),
-        (2, 38, 13, 2, 1),
-        (2, 39, 13, 3, 1),
-        (2, 40, 14, 1, 1),
-        (2, 41, 14, 2, 1),
-        (2, 42, 14, 3, 1),
-        (3, 1, 1, 1, 3),
-        (3, 2, 1, 2, 3),
-        (3, 3, 1, 3, 3),
-        (3, 4, 2, 1, 3),
-        (3, 5, 2, 2, 2),
-        (3, 6, 2, 3, 2),
-        (3, 7, 3, 1, 2),
-        (3, 8, 3, 2, 1),
-        (3, 9, 3, 3, 2),
-        (3, 10, 4, 1, 1),
-        (3, 11, 4, 2, 1),
-        (3, 12, 4, 3, 1);
+
 
 CREATE TABLE route (
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -271,15 +105,7 @@ CREATE TABLE route (
     INDEX (id, bus_id)
 );
 
-INSERT INTO 
-    route 
-        (destination, bus_id, min_seats, price)
-    VALUES 
-        ('Bratislava', 1, 10, 12.00),
-        ('Frankfurt', 2, 10, 87.00),
-        ('Paris', 3, 10, 114.00),
-        ('Venice', 4, 10, 68.00),
-        ('Salzburg', 5, 4, 46.00);
+
 
 CREATE TABLE schedule (
     id int(15) NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -323,34 +149,3 @@ CREATE TABLE holiday(
     event date NOT NULL,
     INDEX (id)
 );
-
-INSERT INTO 
-    holiday 
-        (event)
-    VALUES 
-        (20170101),
-        (20170106),
-        (20170417),
-        (20170501),
-        (20170525),
-        (20170605),
-        (20170615),
-        (20170815),
-        (20171026),
-        (20171101),
-        (20171208),
-        (20171225),
-        (20171226),
-        (20180101),
-        (20180106),
-        (20180402),
-        (20180501),
-        (20180510),
-        (20180521),
-        (20180531),
-        (20180815),
-        (20181026),
-        (20181101),
-        (20181208),
-        (20181225),
-        (20181226);
